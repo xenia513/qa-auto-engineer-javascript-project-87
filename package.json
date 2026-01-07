@@ -43,7 +43,7 @@
     "transform": {}
   },
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/.bin/jest",
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "jest --watch",
     "lint": "eslint **/*.js",
     "coverage": "jest --coverage",
