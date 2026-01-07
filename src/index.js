@@ -1,4 +1,3 @@
-import { readFileSync } from 'fs'
 import parseFile from './parser.js'
 
 const buildDiff = (data1, data2) => {
@@ -23,7 +22,7 @@ const buildDiff = (data1, data2) => {
   return `{\n${diffLines.join('\n')}\n}`
 }
 
-const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+const genDiff = (filepath1, filepath2) => {
   const data1 = parseFile(filepath1)
   const data2 = parseFile(filepath2)
   return buildDiff(data1, data2)
