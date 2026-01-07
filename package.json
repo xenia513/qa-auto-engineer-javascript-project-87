@@ -38,10 +38,11 @@
     "power-assert": "^1.6.1",
     "ts-jest": "^29.4.6"
   },
-  "jest": {
-    "testEnvironment": "node",
-    "transform": {}
-  },
+    "jest": {
+      "transform": {
+        "^.+\\.[t|j]sx?$": "babel-jest"
+      }
+    },
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
     "test:watch": "jest --watch",
