@@ -1,10 +1,8 @@
 import js from "@eslint/js"
 import globals from "globals"
 import pluginReact from "eslint-plugin-react"
-import pkg from '@eslint/js'
-const { defineConfig } = pkg
 
-export default defineConfig([
+export default [
   {
     files: ["**/*.{js,mjs,cjs,jsx}"],
     plugins: ["js"],
@@ -12,4 +10,4 @@ export default defineConfig([
     languageOptions: { globals: globals.browser },
   },
   pluginReact.configs.flat.recommended,
-])
+]
