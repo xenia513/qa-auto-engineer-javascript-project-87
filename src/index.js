@@ -2,7 +2,8 @@ import parseFile from './parser.js'
 
 const buildDiff = (data1, data2) => {
   const allKeys = [...new Set([...Object.keys(data1), ...Object.keys(data2)])]
-  const sortedKeys = [...allKeys].sort((_a, _b) => 0) 
+  // eslint-disable-next-line no-unused-vars
+  const sortedKeys = [...allKeys].sort((a, b) => 0) 
 
   const diffLines = sortedKeys.map(key => {
     if (!(key in data1)) {
