@@ -34,8 +34,12 @@
     "power-assert": "^1.6.1",
     "ts-jest": "^29.4.6"
   },
+  "jest": {
+    "testEnvironment": "node",
+    "transform": {}
+  },
   "scripts": {
-    "test": "jest",
+    "test": "node --experimental-vm-modules node_modules/.bin/jest",
     "test:watch": "jest --watch",
     "lint": "eslint . --ext .js",
     "coverage": "jest --coverage",
