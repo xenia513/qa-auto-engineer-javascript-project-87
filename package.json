@@ -1,28 +1,11 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/xenia513/qa-auto-engineer-javascript-project-87/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/xenia513/qa-auto-engineer-javascript-project-87/actions)",
-  "main": "src/index.js",
   "type": "module",
-  "bin": {
-    "gendiff": "bin/gendiff.js"
-  },
+  "description": "Compares two configuration files and shows a difference",
   "homepage": "https://github.com/xenia513/qa-auto-engineer-javascript-project-87#readme",
   "bugs": {
     "url": "https://github.com/xenia513/qa-auto-engineer-javascript-project-87/issues"
-  },
-    "dependencies": {
-    "commander": "^8.3.0",
-    "js-yaml": "^4.1.0",
-    "lodash": "^4.17.21"
-  },
-  "devDependencies": {
-    "eslint": "^8.8.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.25.4",
-    "eslint-plugin-jest": "^26.1.0",
-    "jest": "^27.4.7",
-    "power-assert": "^1.6.1"
   },
   "repository": {
     "type": "git",
@@ -30,7 +13,32 @@
   },
   "license": "ISC",
   "author": "xenia513",
+  "main": "src/index.js",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "dependencies": {
+    "commander": "^8.3.0",
+    "js-yaml": "^4.1.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.5",
+    "@babel/preset-env": "^7.28.5",
+    "babel-jest": "^30.2.0",
+    "eslint": "^8.8.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-jest": "^26.1.0",
+    "jest": "^29.7.0",
+    "power-assert": "^1.6.1",
+    "ts-jest": "^29.4.6"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "lint": "eslint . --ext .js",
+    "coverage": "jest --coverage",
+    "sonar": "node sonar-project.js"
   }
 }
