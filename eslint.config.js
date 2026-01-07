@@ -1,7 +1,7 @@
 import js from "@eslint/js"
 import globals from "globals"
 import pluginReact from "eslint-plugin-react"
-const defineConfig = require('@eslint/js').defineConfig;
+import defineConfig from '@eslint/js'
 
 export default defineConfig([
   {
