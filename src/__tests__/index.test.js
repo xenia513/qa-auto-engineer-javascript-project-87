@@ -104,23 +104,23 @@ describe('plain format', () => {
     )
 
     const expected = [
-    { key: 'follow', type: 'removed', value: false },
-    { key: 'proxy', type: 'removed', value: '123.234.53.22' },
-    { key: 'timeout', type: 'changed', oldValue: 50, newValue: 20 },
-    { key: 'verbose', type: 'added', value: true },
-  ]
+      { key: 'follow', type: 'removed', value: false },
+      { key: 'proxy', type: 'removed', value: '123.234.53.22' },
+      { key: 'timeout', type: 'changed', oldValue: 50, newValue: 20 },
+      { key: 'verbose', type: 'added', value: true },
+    ]
 
     expect(JSON.parse(result)).toEqual(expected)
   })
 })
-  test('nested json format', () => {
-    const result = genDiff(
-      getFixturePath('nested1.json'),
-      getFixturePath('nested2.json'),
-      'json',
-    )
+test('nested json format', () => {
+  const result = genDiff(
+    getFixturePath('nested1.json'),
+    getFixturePath('nested2.json'),
+    'json',
+  )
 
-    const expected = [
+  const expected = [
     { key: 'database.host', type: 'changed', oldValue: 'localhost', newValue: 'remote.host' },
     { key: 'database.port', type: 'changed', oldValue: 5432, newValue: 5433 },
     {

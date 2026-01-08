@@ -35,7 +35,7 @@ const plain = (data) => {
     })
     return result
   }
-  return iter(data).filter((element => element !== null)).join('\n')
+  return iter(data).filter(element => element !== null).join('\n')
 }
 
 export default plain
