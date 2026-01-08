@@ -1,74 +1,50 @@
 import genDiff from '../index.js'
 import path from 'path'
+import { fileURLToPath } from 'url'
 
-const __dirname = path.resolve()
+const __filename = fileURLToPath(import.meta.url)
+const __dirname = path.dirname(__filename)
 
 const getFixturePath = filename =>
-  path.join(__dirname, '__fixtures__', filename)
+  path.join(__dirname, '..','..', '__fixtures__', filename)
 
-describe('JSON format', () => {
-  test('compares two flat JSON files', () => {
-    const filepath1 = getFixturePath('file1.json')
-    const filepath2 = getFixturePath('file2.json')
-
-    const result = genDiff(filepath1, filepath2)
-
-    expect(result).toBe(`{
+//тесты для плоских JSON и YAML
+const expectedStylishFlat = `{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
   - timeout: 50
   + timeout: 20
   + verbose: true
-}`)
-  })
+}`
 
-  test('handles identical JSON files', () => {
-    const filepath = getFixturePath('file1.json')
-    const result = genDiff(filepath, filepath)
-
-    expect(result).toBe(`{
+const expectedIdenticalFlat = `{
     follow: false
     host: hexlet.io
     proxy: 123.234.53.22
     timeout: 50
-}`)
-  })
-})
-// Тесты для YAML
-describe('YAML format', () => {
-  test('compares two flat YAML files', () => {
-    const filepath1 = getFixturePath('file1.yml')
-    const filepath2 = getFixturePath('file2.yml')
+}`
 
+describe('Stylish format (flat files)', () => {
+  test.each(['json', 'yml'])('compares two flat files', (ext) => {
+    const filepath1 = getFixturePath(`file1.${ext}`)
+    const filepath2 = getFixturePath(`file2.${ext}`)
     const result = genDiff(filepath1, filepath2)
 
-    expect(result).toBe(`{
-  - follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 20
-  + verbose: true
-}`)
+    expect(result).toBe(expectedStylishFlat)
   })
 
-  test('handles identical YAML files', () => {
-    const filepath = getFixturePath('file1.yml')
+  test.each(['json', 'yml'])('handles identical %s files', (ext) => {
+    const filepath = getFixturePath(`file1.${ext}`)
     const result = genDiff(filepath, filepath)
 
-    expect(result).toBe(`{
-    follow: false
-    host: hexlet.io
-    proxy: 123.234.53.22
-    timeout: 50
-}`)
+    expect(result).toBe(expectedIdenticalFlat)
   })
 })
 
 // Тесты для plain-форматтера
 describe('plain format', () => {
-  test('plain format output', () => {
+  test('flat plain format', () => {
     const result = genDiff(
       getFixturePath('file1.json'),
       getFixturePath('file2.json'),
@@ -94,9 +70,10 @@ Property 'features' was updated. From ["cache","logging"] to ["logging","monitor
 Property 'timeout' was updated. From 50 to 20`)
   })
 })
+
 // Тесты для json-форматтера
-describe('plain format', () => {
-  test('json format output', () => {
+describe('json format', () => {
+  test('flat json format', () => {
     const result = genDiff(
       getFixturePath('file1.json'),
       getFixturePath('file2.json'),
