@@ -59,15 +59,16 @@ gendiff --format json file1.json file2.json
 ```
 
 ## Difference between two flat JSON files:
-
+[![asciicast](https://asciinema.org/a/nHKg7nocGWwtztv3.svg)](https://asciinema.org/a/nHKg7nocGWwtztv3)
 
 ## Difference between two flat YML / YAML files:
-
+[![asciicast](https://asciinema.org/a/F0T8dJuxvf8QtasG.svg)](https://asciinema.org/a/F0T8dJuxvf8QtasG)
 
 ## Difference between two nested files (stylish format):
-
+[![asciicast](https://asciinema.org/a/zB9SC9dpnI4buRLe.svg)](https://asciinema.org/a/zB9SC9dpnI4buRLe)
 
 ## Difference between two nested files (plain format):
-
+[![asciicast](https://asciinema.org/a/CeOI2eLWvwScNGl9.svg)](https://asciinema.org/a/CeOI2eLWvwScNGl9)
 
 ## Difference between two nested files (json format):
+[![asciicast](https://asciinema.org/a/vYYhcmUjRBSfV7ld.svg)](https://asciinema.org/a/vYYhcmUjRBSfV7ld)
