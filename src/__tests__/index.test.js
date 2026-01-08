@@ -3,17 +3,17 @@ import path from 'path'
 
 const __dirname = path.resolve()
 
-const getFixturePath = (filename) => 
+const getFixturePath = filename =>
   path.join(__dirname, '__fixtures__', filename)
 
-  describe('JSON format', () => {
-    test('compares two flat JSON files', () => {
-      const filepath1 = getFixturePath('file1.json')
-      const filepath2 = getFixturePath('file2.json')
+describe('JSON format', () => {
+  test('compares two flat JSON files', () => {
+    const filepath1 = getFixturePath('file1.json')
+    const filepath2 = getFixturePath('file2.json')
 
-      const result = genDiff(filepath1, filepath2)
+    const result = genDiff(filepath1, filepath2)
 
-      expect(result).toBe(`{
+    expect(result).toBe(`{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
@@ -23,27 +23,27 @@ const getFixturePath = (filename) =>
 }`)
   })
 
-    test('handles identical JSON files', () => {
-      const filepath = getFixturePath('file1.json')
-      const result = genDiff(filepath, filepath)
+  test('handles identical JSON files', () => {
+    const filepath = getFixturePath('file1.json')
+    const result = genDiff(filepath, filepath)
 
-      expect(result).toBe(`{
+    expect(result).toBe(`{
     follow: false
     host: hexlet.io
     proxy: 123.234.53.22
     timeout: 50
 }`)
-    })
+  })
 })
 // Тесты для YAML
-    describe('YAML format', () => {
-      test('compares two flat YAML files', () => {
-        const filepath1 = getFixturePath('file1.yml')
-        const filepath2 = getFixturePath('file2.yml')
+describe('YAML format', () => {
+  test('compares two flat YAML files', () => {
+    const filepath1 = getFixturePath('file1.yml')
+    const filepath2 = getFixturePath('file2.yml')
 
-        const result = genDiff(filepath1, filepath2)
+    const result = genDiff(filepath1, filepath2)
 
-        expect(result).toBe(`{
+    expect(result).toBe(`{
   - follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
@@ -51,86 +51,86 @@ const getFixturePath = (filename) =>
   + timeout: 20
   + verbose: true
 }`)
-      })
+  })
 
-      test('handles identical YAML files', () => {
-        const filepath = getFixturePath('file1.yml')
-        const result = genDiff(filepath, filepath)
+  test('handles identical YAML files', () => {
+    const filepath = getFixturePath('file1.yml')
+    const result = genDiff(filepath, filepath)
 
-        expect(result).toBe(`{
+    expect(result).toBe(`{
     follow: false
     host: hexlet.io
     proxy: 123.234.53.22
     timeout: 50
 }`)
-      })
-    })
+  })
+})
 
-  // Тесты для plain-форматтера
-    describe('plain format', () => {
-      test('plain format output', () => {
-        const result = genDiff(
-          getFixturePath('file1.json'),
-          getFixturePath('file2.json'),
-          'plain'
-        )
+// Тесты для plain-форматтера
+describe('plain format', () => {
+  test('plain format output', () => {
+    const result = genDiff(
+      getFixturePath('file1.json'),
+      getFixturePath('file2.json'),
+      'plain',
+    )
 
-        expect(result).toBe(`Property 'follow' was removed
+    expect(result).toBe(`Property 'follow' was removed
 Property 'proxy' was removed
 Property 'timeout' was updated. From 50 to 20
 Property 'verbose' was added with value: true`)
-      })
+  })
 
-      test('nested plain format', () => {
-        const result = genDiff(
-          getFixturePath('nested1.json'),
-          getFixturePath('nested2.json'),
-          'plain'
-        )
+  test('nested plain format', () => {
+    const result = genDiff(
+      getFixturePath('nested1.json'),
+      getFixturePath('nested2.json'),
+      'plain',
+    )
 
-        expect(result).toBe(`Property 'database.host' was updated. From localhost to remote.host
+    expect(result).toBe(`Property 'database.host' was updated. From localhost to remote.host
 Property 'database.port' was updated. From 5432 to 5433
 Property 'features' was updated. From ["cache","logging"] to ["logging","monitoring"]
 Property 'timeout' was updated. From 50 to 20`)
-      })
-    })
-    // Тесты для json-форматтера
-    describe('plain format', () => {
-      test('json format output', () => {
-        const result = genDiff(
-          getFixturePath('file1.json'),
-          getFixturePath('file2.json'),
-          'json'
-        )
+  })
+})
+// Тесты для json-форматтера
+describe('plain format', () => {
+  test('json format output', () => {
+    const result = genDiff(
+      getFixturePath('file1.json'),
+      getFixturePath('file2.json'),
+      'json',
+    )
 
-        const expected = [
-        { key: 'follow', type: 'removed', value: false },
-        { key: 'proxy', type: 'removed', value: '123.234.53.22' },
-        { key: 'timeout', type: 'changed', oldValue: 50, newValue: 20 },
-        { key: 'verbose', type: 'added', value: true }
-      ]
+    const expected = [
+    { key: 'follow', type: 'removed', value: false },
+    { key: 'proxy', type: 'removed', value: '123.234.53.22' },
+    { key: 'timeout', type: 'changed', oldValue: 50, newValue: 20 },
+    { key: 'verbose', type: 'added', value: true },
+  ]
 
-        expect(JSON.parse(result)).toEqual(expected);
-      })
-    })
-      test('nested json format', () => {
-        const result = genDiff(
-          getFixturePath('nested1.json'),
-          getFixturePath('nested2.json'),
-          'json'
-        )
+    expect(JSON.parse(result)).toEqual(expected)
+  })
+})
+  test('nested json format', () => {
+    const result = genDiff(
+      getFixturePath('nested1.json'),
+      getFixturePath('nested2.json'),
+      'json',
+    )
 
-        const expected = [
-{ key: 'database.host', type: 'changed', oldValue: 'localhost', newValue: 'remote.host' },
-{ key: 'database.port', type: 'changed', oldValue: 5432, newValue: 5433 },
-{ 
-  key: 'features',
-  type: 'changed',
-  oldValue: ['cache', 'logging'],
-  newValue: ['logging', 'monitoring']
-},
-{ key: 'timeout', type: 'changed', oldValue: 50, newValue: 20 }
-        ]
+    const expected = [
+    { key: 'database.host', type: 'changed', oldValue: 'localhost', newValue: 'remote.host' },
+    { key: 'database.port', type: 'changed', oldValue: 5432, newValue: 5433 },
+    {
+      key: 'features',
+      type: 'changed',
+      oldValue: ['cache', 'logging'],
+      newValue: ['logging', 'monitoring'],
+    },
+    { key: 'timeout', type: 'changed', oldValue: 50, newValue: 20 },
+  ]
 
-        expect(JSON.parse(result)).toEqual(expected)
-      })
+  expect(JSON.parse(result)).toEqual(expected)
+})

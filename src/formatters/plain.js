@@ -11,7 +11,7 @@ const getRightValue = (value) => {
     return `${value}`
   }
   return String(value)
-};
+}
 
 const plain = (data) => {
   const iter = (tree, path = '') => {
@@ -35,7 +35,7 @@ const plain = (data) => {
     })
     return result
   }
-  return iter(data).filter(((element) => element !== null)).join('\n')
+  return iter(data).filter((element => element !== null)).join('\n')
 }
 
 export default plain

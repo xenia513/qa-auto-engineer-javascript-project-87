@@ -13,9 +13,9 @@ const stringify = (value, replacer, depth) => {
       .map(([key, val]) => `${currentIndent}${key}: ${iter(val, currentDepth + 1)}`)
 
     return ['{', ...lines, `${bracketIndent}}`].join('\n')
-  };
+  }
   return iter(value, depth)
-};
+}
 
 const stylish = (tree) => {
   const iter = (node, depth) => {
@@ -23,8 +23,8 @@ const stylish = (tree) => {
     const bracketIndent = replacer.repeat(depth - 1)
 
     const result = Array.from(node)
-    .map(({
-      key, type, value, children,
+      .map(({
+        key, type, value, children,
       }) => {
         const contentIndent = replacer.repeat(depth - 1) + '  '
         switch (type) {
@@ -39,7 +39,7 @@ const stylish = (tree) => {
           default:
             return `${contentIndent}  ${key}: ${stringify(value, replacer, depth + 1)}`
         }
-    })
+      })
     return ['{', ...result, `${bracketIndent}}`].join('\n')
   }
   return iter(tree, 1)

@@ -7,7 +7,7 @@ const formatters = {
   stylish,
   plain,
   json,
-};
+}
 
 const getFormatter = (formatName = 'stylish') => {
   if (!_.has(formatters, formatName)) {
