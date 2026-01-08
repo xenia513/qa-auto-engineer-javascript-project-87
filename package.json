@@ -30,6 +30,7 @@
     "@eslint/js": "^9.39.2",
     "babel-jest": "^30.2.0",
     "babel-plugin-transform-import-meta": "^2.3.3",
+    "common-es": "^1.1.0",
     "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.25.4",
@@ -46,7 +47,7 @@
     }
   },
   "scripts": {
-    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "test": "jest",
     "test:watch": "jest --watch",
     "lint": "eslint **/*.js",
     "coverage": "jest --coverage"
