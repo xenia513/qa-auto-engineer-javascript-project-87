@@ -6,9 +6,9 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
 
 const getFixturePath = filename =>
-  path.join(__dirname, '..','..', '__fixtures__', filename)
+  path.join(__dirname, '..', '..', '__fixtures__', filename)
 
-//тесты для плоских JSON и YAML
+// тесты для плоских JSON и YAML
 const expectedStylishFlat = `{
   - follow: false
     host: hexlet.io
