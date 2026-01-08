@@ -1,5 +1,6 @@
 import genDiff from '../index.js'
 import path from 'path'
+import getFormatter from '../formatters/index.js' 
 const __dirname = process.cwd()
 
 const getFixturePath = filename =>
@@ -68,6 +69,36 @@ Property 'timeout' was updated. From 50 to 20`)
   })
 })
 
+// Тесты для stylish-форматтера
+describe('Stylish format (nested files)', () => {
+  test('compares two nested JSON files', () => {
+    const filepath1 = getFixturePath('nested1.json')
+    const filepath2 = getFixturePath('nested2.json')
+
+    const expected = `{
+    database: {
+      - host: localhost
+      + host: remote.host
+      - port: 5432
+      + port: 5433
+    }
+  - features: {
+        0: cache
+        1: logging
+    }
+  + features: {
+        0: logging
+        1: monitoring
+    }
+  - timeout: 50
+  + timeout: 20
+}`;
+
+    const result = genDiff(filepath1, filepath2)
+    expect(result).toBe(expected)
+  })
+})
+
 // Тесты для json-форматтера
 describe('json format', () => {
   test('flat json format', () => {
@@ -121,8 +152,17 @@ describe('Error handling', () => {
 
   // Тесты на несуществующие файлы
   test('throws error when files do not exist', () => {
-    const filepath1 = getFixturePath('non_existent_file1.json');
-    const filepath2 = getFixturePath('non_existent_file2.json');
+    const filepath1 = getFixturePath('non_existent_file1.json')
+    const filepath2 = getFixturePath('non_existent_file2.json')
 
-    expect(() => genDiff(filepath1, filepath2)).toThrow(); 
+    expect(() => genDiff(filepath1, filepath2)).toThrow();
   })
+
+  // тест на несуществующие форматы
+describe('getFormatter error path', () => {
+  test('throws error for an unknown format name', () => {
+    const unknownFormat = 'nonExistentFormat'
+    
+    expect(() => getFormatter(unknownFormat)).toThrow()
+  })
+})
