@@ -108,3 +108,21 @@ test('nested json format', () => {
 
   expect(JSON.parse(result)).toEqual(expected)
 })
+
+// Тесты на обработку ошибок при некорректном формате файла
+describe('Error handling', () => {
+  test('throws error on unsupported file format', () => {
+    const filepath1 = getFixturePath('file1.txt')
+    const filepath2 = getFixturePath('file2.json')
+
+    expect(() => genDiff(filepath1, filepath2)).toThrow()
+  })
+})
+
+  // Тесты на несуществующие файлы
+  test('throws error when files do not exist', () => {
+    const filepath1 = getFixturePath('non_existent_file1.json');
+    const filepath2 = getFixturePath('non_existent_file2.json');
+
+    expect(() => genDiff(filepath1, filepath2)).toThrow(); 
+  })
