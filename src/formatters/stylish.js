@@ -20,23 +20,25 @@ const stringify = (value, replacer, depth) => {
 const stylish = (tree) => {
   const iter = (node, depth) => {
     const replacer = '    '
-    const currentIndent = replacer.repeat(depth)
     const bracketIndent = replacer.repeat(depth - 1)
-    const result = node.flatMap(({
+
+    const result = Array.from(node)
+    .map(({
       key, type, value, children,
-    }) => {
-      switch (type) {
-        case 'nested':
-          return `${currentIndent.slice(2)}  ${key}: ${iter(children, depth + 1)}`
-        case 'added':
-          return `${currentIndent.slice(2)}+ ${key}: ${stringify(value, replacer, depth + 1)}`
-        case 'removed':
-          return `${currentIndent.slice(2)}- ${key}: ${stringify(value, replacer, depth + 1)}`
-        case 'updated':
-          return `${currentIndent.slice(2)}- ${key}: ${stringify(value.value1, replacer, depth + 1)}\n${currentIndent.slice(2)}+ ${key}: ${stringify(value.value2, replacer, depth + 1)}`
-        default:
-          return `${currentIndent.slice(2)}  ${key}: ${stringify(value, replacer, depth + 1)}`
-      }
+      }) => {
+        const contentIndent = replacer.repeat(depth - 1) + '  '
+        switch (type) {
+          case 'nested':
+            return `${contentIndent}  ${key}: ${iter(children, depth + 1)}`
+          case 'added':
+            return `${contentIndent}+ ${key}: ${stringify(value, replacer, depth + 1)}`
+          case 'removed':
+            return `${contentIndent}- ${key}: ${stringify(value, replacer, depth + 1)}`
+          case 'updated':
+            return `${contentIndent}- ${key}: ${stringify(value.value1, replacer, depth + 1)}\n${contentIndent}+ ${key}: ${stringify(value.value2, replacer, depth + 1)}`
+          default:
+            return `${contentIndent}  ${key}: ${stringify(value, replacer, depth + 1)}`
+        }
     })
     return ['{', ...result, `${bracketIndent}}`].join('\n')
   }

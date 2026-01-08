@@ -9,11 +9,11 @@ const formatters = {
   json,
 };
 
-const getFormatter = (file, formatName = 'stylish') => {
+const getFormatter = (formatName = 'stylish') => {
   if (!_.has(formatters, formatName)) {
     throw new Error('Unknown format!')
   }
-  return formatters[formatName](file)
+  return formatters[formatName]
 }
 
 export default getFormatter
