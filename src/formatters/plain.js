@@ -1,13 +1,11 @@
-import _ from 'lodash'
-
 const getRightValue = (value) => {
-  if (_.isArray(value)) {
+  if (Array.isArray(value)) {
     return `${JSON.stringify(value)}`
   }
-  if (_.isObject(value)) {
+  if (typeof value === 'object' && value !== null) {
     return '[complex value]'
   }
-  if (_.isString(value)) {
+  if (typeof value === 'string') {
     return `${value}`
   }
   return String(value)

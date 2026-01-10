@@ -1,18 +1,9 @@
-import _ from 'lodash'
-
-const stringify = (value, replacer, depth) => {
-  const iter = (currentValue, currentDepth) => {
-    if (!_.isObject(currentValue)) {
+const stringify = (value, depth) => {
+  const iter = (currentValue) => {
+    if (typeof currentValue !== 'object' || currentValue === null) {
       return `${currentValue}`
     }
-
-    const currentIndent = replacer.repeat(currentDepth)
-    const bracketIndent = replacer.repeat(currentDepth - 1)
-    const lines = Object
-      .entries(currentValue)
-      .map(([key, val]) => `${currentIndent}${key}: ${iter(val, currentDepth + 1)}`)
-
-    return ['{', ...lines, `${bracketIndent}}`].join('\n')
+    return String(currentValue) 
   }
   return iter(value, depth)
 }
