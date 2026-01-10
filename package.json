@@ -33,8 +33,8 @@
   },
   "jest": {
     "coveragePathIgnorePatterns": [
-      "/node_modules/",          
-      "<rootDir>/babel.config.cjs"
+      "<rootDir>/babel.config.cjs",
+      "<rootDir>/bin/"
     ]
   },
   "scripts": {
