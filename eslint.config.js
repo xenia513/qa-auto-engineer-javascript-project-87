@@ -9,8 +9,8 @@ export default defineConfig([
     languageOptions: {
       globals: {
         ...globals.node,
-        ...globals.jest
-      }
-    }
-  }
+        ...globals.jest,
+      },
+    },
+  },
 ])
