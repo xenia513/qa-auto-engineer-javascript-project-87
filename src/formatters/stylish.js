@@ -1,5 +1,5 @@
-const stringify = (value, depth) => {
-  const iter = (currentValue) => {
+const stringify = (value, replacer, depth) => {
+  const iter = (currentValue, currentDepth) => {
     if (typeof currentValue !== 'object' || currentValue === null) {
       return `${currentValue}`
     }
