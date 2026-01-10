@@ -1,8 +1,0 @@
-{
-  "timeout": 20,
-  "database": {
-    "port": 5433,
-    "host": "remote.host"
-  },
-  "features": ["logging", "monitoring"]
-}

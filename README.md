@@ -5,6 +5,10 @@
 
 [![Quality gate](https://sonarcloud.io/api/project_badges/quality_gate?project=xenia513_qa-auto-engineer-javascript-project-87)](https://sonarcloud.io/summary/new_code?id=xenia513_qa-auto-engineer-javascript-project-87)
 
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=xenia513_qa-auto-engineer-javascript-project-87&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=xenia513_qa-auto-engineer-javascript-project-87)
+
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=xenia513_qa-auto-engineer-javascript-project-87&metric=coverage)](https://sonarcloud.io/summary/new_code?id=xenia513_qa-auto-engineer-javascript-project-87)
+
 ## Description:
 This utility shows the difference between two files. The output can be shown in different formats.
 <br></br>
