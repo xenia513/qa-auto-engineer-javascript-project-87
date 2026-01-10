@@ -40,7 +40,7 @@
     }
   },
   "scripts": {
-    "test": "npx jest",
+    "test": "jest --verbose",
     "test:watch": "jest --watch",
     "lint": "eslint **/*.js",
     "coverage": "jest --coverage"
