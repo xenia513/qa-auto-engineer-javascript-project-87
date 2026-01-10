@@ -8,12 +8,6 @@ const objectDiff = (file1, file2) => {
   return keys.map((key) => {
     const value1 = file1[key]
     const value2 = file2[key]
-    if (
-      _.isObject(value1) && !_.isArray(value1)
-      && _.isObject(value2) && !_.isArray(value2)
-    ) {
-      return { key, type: 'nested', children: objectDiff(value1, value2) }
-    }
     if (!_.has(file1, key)) {
       return { key, type: 'added', value: value2 }
     }

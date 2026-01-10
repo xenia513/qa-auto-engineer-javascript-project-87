@@ -1,18 +1,8 @@
 {
-    database: {
-      - host: localhost
-      + host: remote.host
-      - port: 5432
-      + port: 5433
-    }
-  - features: {
-        0: cache
-        1: logging
-    }
-  + features: {
-        0: logging
-        1: monitoring
-    }
+  - follow: false
+    host: hexlet.io
+  - proxy: 123.234.53.22
   - timeout: 50
   + timeout: 20
+  + verbose: true
 }

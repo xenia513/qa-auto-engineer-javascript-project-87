@@ -1,32 +1,23 @@
 [
     {
-        "key": "database.host",
-        "type": "changed",
-        "oldValue": "localhost",
-        "newValue": "remote.host"
+        "key": "follow",
+        "type": "removed",
+        "value": false
     },
     {
-        "key": "database.port",
-        "type": "changed",
-        "oldValue": 5432,
-        "newValue": 5433
-    },
-    {
-        "key": "features",
-        "type": "changed",
-        "oldValue": [
-            "cache",
-            "logging"
-        ],
-        "newValue": [
-            "logging",
-            "monitoring"
-        ]
+        "key": "proxy",
+        "type": "removed",
+        "value": "123.234.53.22"
     },
     {
         "key": "timeout",
         "type": "changed",
         "oldValue": 50,
         "newValue": 20
+    },
+    {
+        "key": "verbose",
+        "type": "added",
+        "value": true
     }
 ]

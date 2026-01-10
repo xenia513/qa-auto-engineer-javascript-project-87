@@ -24,12 +24,10 @@ const stylish = (tree) => {
 
     const result = Array.from(node)
       .map(({
-        key, type, value, children,
+        key, type, value,
       }) => {
         const contentIndent = replacer.repeat(depth - 1) + '  '
         switch (type) {
-          case 'nested':
-            return `${contentIndent}  ${key}: ${iter(children, depth + 1)}`
           case 'added':
             return `${contentIndent}+ ${key}: ${stringify(value, replacer, depth + 1)}`
           case 'removed':

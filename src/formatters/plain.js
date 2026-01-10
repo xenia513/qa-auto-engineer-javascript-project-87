@@ -16,13 +16,11 @@ const getRightValue = (value) => {
 const plain = (data) => {
   const iter = (tree, path = '') => {
     const result = tree.flatMap(({
-      key, type, value, children,
+      key, type, value,
     }) => {
       const currentPath = ([...path, key])
       const fullPath = currentPath.join('.')
       switch (type) {
-        case 'nested':
-          return iter(children, currentPath)
         case 'added':
           return `Property '${fullPath}' was added with value: ${getRightValue(value)}`
         case 'removed':

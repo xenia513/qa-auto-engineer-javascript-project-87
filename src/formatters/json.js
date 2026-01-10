@@ -1,15 +1,11 @@
 const json = (tree) => {
-  const flattenAndFormat = (nodes, path = '') => {
-    return nodes.flatMap(({ key, type, value, children }) => {
+  const flattenAndFormat = (nodes) => {
+    return nodes.flatMap(({ key, type, value }) => {
       if (type === 'equal') {
         return []
       }
 
-      const fullPath = path ? `${path}.${key}` : key
-
-      if (type === 'nested') {
-        return flattenAndFormat(children, fullPath)
-      }
+      const fullPath = key
 
       if (type === 'updated') {
         return {
