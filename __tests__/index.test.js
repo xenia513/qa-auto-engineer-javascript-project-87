@@ -1,4 +1,4 @@
-import genDiff from 'index.js'
+import genDiff from '../src/index.js'
 import path from 'path'
 import { readFileSync } from 'fs'
 
@@ -7,7 +7,7 @@ const __dirname = process.cwd()
 const getFixturePath = filename =>
   path.join(__dirname, '__fixtures__', filename)
 
-const readFile = (filename) => readFileSync(getFixturePath(filename), 'utf-8')
+const readFile = filename => readFileSync(getFixturePath(filename), 'utf-8')
 
 const expectedStylish = readFile('expected-stylish.txt')
 const expectedPlain = readFile('expected-plain.txt')
