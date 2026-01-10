@@ -1,0 +1,32 @@
+[
+    {
+        "key": "database.host",
+        "type": "changed",
+        "oldValue": "localhost",
+        "newValue": "remote.host"
+    },
+    {
+        "key": "database.port",
+        "type": "changed",
+        "oldValue": 5432,
+        "newValue": 5433
+    },
+    {
+        "key": "features",
+        "type": "changed",
+        "oldValue": [
+            "cache",
+            "logging"
+        ],
+        "newValue": [
+            "logging",
+            "monitoring"
+        ]
+    },
+    {
+        "key": "timeout",
+        "type": "changed",
+        "oldValue": 50,
+        "newValue": 20
+    }
+]

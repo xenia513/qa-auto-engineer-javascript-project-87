@@ -1,0 +1,18 @@
+{
+    database: {
+      - host: localhost
+      + host: remote.host
+      - port: 5432
+      + port: 5433
+    }
+  - features: {
+        0: cache
+        1: logging
+    }
+  + features: {
+        0: logging
+        1: monitoring
+    }
+  - timeout: 50
+  + timeout: 20
+}

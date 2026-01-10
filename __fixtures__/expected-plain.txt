@@ -1,0 +1,4 @@
+Property 'database.host' was updated. From localhost to remote.host
+Property 'database.port' was updated. From 5432 to 5433
+Property 'features' was updated. From ["cache","logging"] to ["logging","monitoring"]
+Property 'timeout' was updated. From 50 to 20
