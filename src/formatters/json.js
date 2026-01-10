@@ -8,14 +8,14 @@ const json = (tree) => {
       const fullPath = key
 
       if (type === 'updated') {
-        return {
+        return [{
           key: fullPath,
           type: 'changed',
           oldValue: value.value1,
           newValue: value.value2,
-        }
+        }]
       }
-      return { key: fullPath, type, value }
+      return [{ key: fullPath, type, value }]
     })
   }
 
