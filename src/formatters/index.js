@@ -1,19 +1,18 @@
-import _ from 'lodash'
-import stylish from './stylish.js'
-import plain from './plain.js'
-import json from './json.js'
+import formatStylish from './stylish.js'
+import formatPlain from './plain.js'
+import formatJson from './json.js'
 
 const formatters = {
-  stylish,
-  plain,
-  json,
+  stylish: formatStylish,
+  plain: formatPlain,
+  json: formatJson,
 }
 
-const getFormatter = (formatName = 'stylish') => {
-  if (!_.has(formatters, formatName)) {
-    throw new Error('Unknown format!')
+const format = (diff, outputFormat = 'stylish') => {
+  if (!formatters[outputFormat]) {
+    throw new Error(`Unknown format: ${outputFormat}`)
   }
-  return formatters[formatName]
+  return formatters[outputFormat](diff)
 }
 
-export default getFormatter
+export default format

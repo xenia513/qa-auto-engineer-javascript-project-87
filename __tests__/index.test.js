@@ -15,25 +15,25 @@ const expectedJSON = readFile('expected-json.txt')
 
 const extensions = ['json', 'yml', 'yaml']
 
-test.each([extensions])('Compare two files', (ext) => {
-  const firstFile = getFixturePath(`file1.${ext}`)
-  const secondFile = getFixturePath(`file2.${ext}`)
-  expect(genDiff(firstFile, secondFile)).toEqual(expectedStylish)
-  expect(genDiff(firstFile, secondFile, 'stylish')).toEqual(expectedStylish)
-  expect(genDiff(firstFile, secondFile, 'plain')).toEqual(expectedPlain)
-  expect(genDiff(firstFile, secondFile, 'json')).toEqual(expectedJSON)
+test.each([extensions])('Compare two %s files', (ext) => {
+  const filepath1 = getFixturePath(`file1.${ext}`)
+  const filepath2 = getFixturePath(`file2.${ext}`)
+  expect(genDiff(filepath1, filepath2)).toEqual(expectedStylish)
+  expect(genDiff(filepath1, filepath2, 'stylish')).toEqual(expectedStylish)
+  expect(genDiff(filepath1, filepath2, 'plain')).toEqual(expectedPlain)
+  expect(genDiff(filepath1, filepath2, 'json')).toEqual(expectedJSON)
 })
 
 describe('Error handling', () => {
   test.each([extensions])('Wrong file extension or format', (ext) => {
     const wrongExtension = getFixturePath('file1.txt')
     const unknownFormat = 'nonExistentFormat'
-    const firstFile = getFixturePath(`file1.${ext}`)
-    const secondFile = getFixturePath(`file2.${ext}`)
-    expect(() => genDiff(wrongExtension, secondFile, 'json'))
-      .toThrowError('Unsupported file format: .txt')
-    expect(() => genDiff(firstFile, secondFile, unknownFormat))
-      .toThrowError('Unknown format!')
+    const filepath1 = getFixturePath(`file1.${ext}`)
+    const filepath2 = getFixturePath(`file2.${ext}`)
+    expect(() => genDiff(wrongExtension, filepath2, 'json'))
+      .toThrowError('Unsupported file format: txt')
+    expect(() => genDiff(filepath1, filepath2, unknownFormat))
+      .toThrowError(`Unknown format: ${unknownFormat}`)
   })
 
   test('Files do not exist', () => {

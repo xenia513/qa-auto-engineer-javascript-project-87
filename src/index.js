@@ -1,14 +1,26 @@
-import parseFile from './parser.js'
+import fs from 'node:fs'
+import path from 'node:path'
+import parse from './parser.js'
 import diffObjects from './diff.js'
-import getFormatter from './formatters/index.js'
+import format from './formatters/index.js'
 
-const genDiff = (filepath1, filepath2, format = 'stylish') => {
-  const data1 = parseFile(filepath1)
-  const data2 = parseFile(filepath2)
+const getFullPath = filepath => path.resolve(filepath)
+const extractFormat = filepath => path.extname(filepath).slice(1).toLowerCase()
+const readContent = fullpath => fs.readFileSync(fullpath, 'utf-8')
+
+const getData = (filepath) => {
+  const fullpath = getFullPath(filepath)
+  const inputFormat = extractFormat(filepath)
+  const content = readContent(fullpath)
+  return parse(content, inputFormat)
+}
+
+const genDiff = (filepath1, filepath2, outputFormat = 'stylish') => {
+  const data1 = getData(filepath1)
+  const data2 = getData(filepath2)
   const diff = diffObjects(data1, data2)
 
-  const formatter = getFormatter(format)
-  return formatter(diff)
+  return format(diff, outputFormat)
 }
 
 export default genDiff

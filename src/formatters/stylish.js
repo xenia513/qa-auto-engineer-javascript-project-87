@@ -1,36 +1,35 @@
-const stringify = (value) => {
-  const iter = (currentValue) => {
-    if (typeof currentValue !== 'object' || currentValue === null) {
-      return `${currentValue}`
-    }
-    return String(currentValue)
+const getIndent = (depth, type = 'content') => {
+  const spacesPerDepth = 4
+  let indentSpaces = (depth - 1) * spacesPerDepth
+  if (type === 'content') {
+    indentSpaces += 2
   }
-  return iter(value)
+  return ' '.repeat(indentSpaces)
 }
 
-const stylish = (tree) => {
-  const iter = (node, depth) => {
-    const replacer = '    '
-    const bracketIndent = replacer.repeat(depth - 1)
-    const result = Array.from(node)
-      .map(({
-        key, type, value,
-      }) => {
-        const contentIndent = replacer.repeat(depth - 1) + '  '
-        switch (type) {
-          case 'added':
-            return `${contentIndent}+ ${key}: ${stringify(value)}`
-          case 'removed':
-            return `${contentIndent}- ${key}: ${stringify(value)}`
-          case 'updated':
-            return `${contentIndent}- ${key}: ${stringify(value.value1)}\n${contentIndent}+ ${key}: ${stringify(value.value2)}`
-          default:
-            return `${contentIndent}  ${key}: ${stringify(value)}`
-        }
-      })
-    return ['{', ...result, `${bracketIndent}}`].join('\n')
-  }
-  return iter(tree, 1)
+const iter = (tree, depth) => {
+  const bracketIndent = getIndent(depth, 'bracket')
+  const result = tree
+    .map(({
+      key, type, value,
+    }) => {
+      const contentIndent = getIndent(depth, 'content')
+      switch (type) {
+        case 'added':
+          return `${contentIndent}+ ${key}: ${String(value)}`
+        case 'removed':
+          return `${contentIndent}- ${key}: ${String(value)}`
+        case 'updated':
+          return `${contentIndent}- ${key}: ${String(value.value1)}\n${contentIndent}+ ${key}: ${String(value.value2)}`
+        default:
+          return `${contentIndent}  ${key}: ${String(value)}`
+      }
+    })
+  return ['{', ...result, `${bracketIndent}}`].join('\n')
 }
 
-export default stylish
+const formatStylish = (data) => {
+  return iter(data, 1)
+}
+
+export default formatStylish
