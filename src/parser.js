@@ -4,9 +4,9 @@ const parseJson = content => JSON.parse(content)
 const parseYaml = content => jsYaml.load(content)
 
 const parsers = {
-  'json': parseJson,
-  'yml': parseYaml,
-  'yaml': parseYaml,
+  json: parseJson,
+  yml: parseYaml,
+  yaml: parseYaml,
 }
 
 const parse = (content, inputFormat) => {
