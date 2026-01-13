@@ -2,7 +2,7 @@ import _ from 'lodash'
 
 const getFullPath = (path, key) => [...path, key].join('.')
 
-const getRightValue = (value) => {
+const stringify = (value) => {
   if (_.isPlainObject(value)) {
     return '[complex value]'
   }
@@ -19,11 +19,11 @@ const formatPlain = (data) => {
     const fullPath = getFullPath('', key)
     switch (type) {
       case 'added':
-        return `Property '${fullPath}' was added with value: ${getRightValue(value)}`
+        return `Property '${fullPath}' was added with value: ${stringify(value)}`
       case 'removed':
         return `Property '${fullPath}' was removed`
       case 'updated':
-        return `Property '${fullPath}' was updated. From ${getRightValue(value.value1)} to ${getRightValue(value.value2)}`
+        return `Property '${fullPath}' was updated. From ${stringify(value.value1)} to ${stringify(value.value2)}`
       default:
         return null
     }

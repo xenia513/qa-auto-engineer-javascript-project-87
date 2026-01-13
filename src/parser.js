@@ -9,10 +9,10 @@ const parsers = {
   yaml: parseYaml,
 }
 
-const parse = (content, inputFormat) => {
-  const parser = parsers[inputFormat]
+const parse = (content, format) => {
+  const parser = parsers[format]
   if (!parser) {
-    throw new Error(`Unsupported file format: ${inputFormat}`)
+    throw new Error(`Unsupported file format: ${format}`)
   }
   return parser(content)
 }
