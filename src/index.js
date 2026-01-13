@@ -1,7 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import parse from './parser.js'
-import diffObjects from './diff.js'
+import getDifference from './diff.js'
 import format from './formatters/index.js'
 
 const getFullPath = filepath => path.resolve(filepath)
@@ -18,7 +18,7 @@ const getData = (filepath) => {
 const genDiff = (filepath1, filepath2, outputFormat = 'stylish') => {
   const data1 = getData(filepath1)
   const data2 = getData(filepath2)
-  const diff = diffObjects(data1, data2)
+  const diff = getDifference(data1, data2)
 
   return format(diff, outputFormat)
 }

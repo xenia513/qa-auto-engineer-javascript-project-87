@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const diffObjects = (data1, data2) => {
+const getDifference = (data1, data2) => {
   const keys1 = _.keys(data1)
   const keys2 = _.keys(data2)
   const keys = _.sortBy(_.union(keys1, keys2))
@@ -21,4 +21,4 @@ const diffObjects = (data1, data2) => {
   })
 }
 
-export default diffObjects
+export default getDifference
